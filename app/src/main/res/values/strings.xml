@@ -30,7 +30,7 @@
     <string name="CV_EventFrom">Desde: </string>
     <string name="CV_EventTo">Hasta: </string>
     <string name="CV_EventDate">Fecha: </string>
-    <string name="CV_Unete">¡Únete!</string>
+    <string name="CV_Unete">Mira toda la información y ¡Únete!</string>
 
     <string name="time">Hora</string>
     <string name="timeFormat">00:00:00</string>
