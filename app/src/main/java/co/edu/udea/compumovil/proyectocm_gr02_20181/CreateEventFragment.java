@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.proyectocm_gr02_20181;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -179,6 +180,8 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
                         ,input_from.getText().toString(),input_to.getText().toString(), "Santiago");
 
                 mDatabaseReference.child("events").child(event.getUid()).setValue(event);
+                Intent ListSong = new Intent(getContext(), MapsActivity2.class);
+                startActivity(ListSong);
                 break;
         }
 
