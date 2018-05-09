@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">ProyectoCM-Gr02</string>
+    <string name="title_activity_sing_in">SingInActivity</string>
+    <string name="btnSignInGoogle">Iniciar sesión con Google</string>
+    <string name="btnAlreadyHaveAccount">Ya tienes cuenta? Inicia sesion</string>
+    <string name="txtRegisterName">Nombre</string>
+    <string name="txtRegistrate">¿No tienes cuenta? Regístrate</string>
+    <string name="btnLogin">Sign in</string>
+    <string name="txtUserName">Email</string>
+    <string name="txtUserPassword">Contraseña</string>
+    <string name="btnSignUp">Registrarse</string>
+    <string name="btnMenuLogout">Cerrar sesion</string>
+    <string name="btnMenuHelp">Ayuda</string>
+    <string name="txtBikePartner">BIKE PARTNER</string>
+    <string name="title_activity_nd">NDActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="itemND_principal">Principal</string>
+    <string name="itemND_Perfil">Perfil</string>
+    <string name="itemND_Amigos">Amigos</string>
+    <string name="itemND_MisEventos">Mis Eventos</string>
+    <string name="itemND_EventosUnidos">Eventos unidos</string>
+    <string name="itemND_Ajustes">Ajustes</string>
+
+
+    <string name="action_settings">Settings</string>
+
+    <string name="CV_Event">Evento</string>
+    <string name="CV_EventFrom">Desde: </string>
+    <string name="CV_EventTo">Hasta: </string>
+    <string name="CV_EventDate">Fecha: </string>
+    <string name="CV_Unete">¡Únete!</string>
+
+    <string name="time">Hora</string>
+    <string name="timeFormat">00:00:00</string>
+    <string name="date">Fecha</string>
+    <string name="dateFormat">DD/MM/AAAA</string>
+    <string name="btnCreate">Crear</string>
+
+    <string name="txtShowUser">Creado por: </string>
+    <string name="btnJoin">Unirse</string>
+
+    <string name="txtFriendName">Nombre de amigo</string>
+    <string name="btnRateFriend">Calificar</string>
+
+    <string name="txtNumFriends">Núm de amigos</string>
+    <string name="txtNumEvents">Núm de eventos</string>
+    <string name="txtRateProfile">Calificación</string>
+
+    <string name="txtMyEvents">Mis eventos</string>
+    <string name="txtJoinEvents">Eventos unidos</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

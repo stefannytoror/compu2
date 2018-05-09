@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "511102905920",
+    "firebase_url": "https://bikepartner-203413.firebaseio.com",
+    "project_id": "bikepartner-203413",
+    "storage_bucket": "bikepartner-203413.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511102905920:android:a08b0564e0ec1d77",
+        "android_client_info": {
+          "package_name": "co.edu.udea.compumovil.proyectocm_gr02_20181"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511102905920-qgbkndiibrgnafeilqsughr5h0atdo73.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.edu.udea.compumovil.proyectocm_gr02_20181",
+            "certificate_hash": "2ff51ce3584af8af1909d325e184efef98849216"
+          }
+        },
+        {
+          "client_id": "511102905920-on41pfprpla520771qnbgd8q09akjkoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLmJksoe3wBRQBm9FOGhyLrblxEe1hYWI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511102905920-on41pfprpla520771qnbgd8q09akjkoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

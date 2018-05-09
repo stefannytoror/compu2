@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_principal"
+            android:title="@string/itemND_principal" />
+        <item
+            android:id="@+id/nav_perfil"
+            android:title="@string/itemND_Perfil" />
+        <item
+            android:id="@+id/nav_friends"
+            android:title="@string/itemND_Amigos" />
+    </group>
+    <group >
+        <item
+            android:id="@+id/nav_misEventos"
+            android:title="@string/itemND_MisEventos" />
+        <item
+            android:id="@+id/nav_eventosUnidos"
+            android:title="@string/itemND_EventosUnidos" />
+    </group>
+    <group >
+        <item
+            android:id="@+id/nav_ajustes"
+            android:title="@string/itemND_Ajustes" />
+    </group>
+
+</menu>
