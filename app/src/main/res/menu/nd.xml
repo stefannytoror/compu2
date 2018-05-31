@@ -6,4 +6,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/sign_out_menu"
+        android:icon="@drawable/common_full_open_on_phone"
+        app:showAsAction="never"
+        android:title="@string/btnMenuLogout" />
 </menu>

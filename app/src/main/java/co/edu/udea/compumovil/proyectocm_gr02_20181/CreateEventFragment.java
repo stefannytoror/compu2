@@ -180,7 +180,7 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
                         ,input_from.getText().toString(),input_to.getText().toString(), "Santiago");
 
                 mDatabaseReference.child("events").child(event.getUid()).setValue(event);
-                Intent ListSong = new Intent(getContext(), MapsActivity2.class);
+                Intent ListSong = new Intent(getContext(), Main2Activity.class);
                 startActivity(ListSong);
                 break;
         }

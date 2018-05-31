@@ -125,8 +125,11 @@ public class SignUpActivity extends AppCompatActivity {
     private void startMainActivity(FirebaseUser user){
 
         if(user != null) {
-            Intent intent = new Intent(this, MainActivity.class);
+            /*Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);*/
+            Intent intent = new Intent(this, NDActivity.class);
             startActivity(intent);
+
         }
 
     }
