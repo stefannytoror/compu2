@@ -1,9 +1,11 @@
 package co.edu.udea.compumovil.proyectocm_gr02_20181;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -95,9 +97,37 @@ public class PrincipalPageFragment extends Fragment {
                 (Event.class,R.layout.cardview_events,EventViewHolder.class,mreference){
 
             @Override
-            public  void populateViewHolder(EventViewHolder eventViewHolder,Event model ,int position){
+            public  void populateViewHolder(EventViewHolder eventViewHolder,final Event model ,int position){
                 eventViewHolder.setOrigen(model.getOrigen());
                 eventViewHolder.setDestino(model.getDestino());
+
+                eventViewHolder.cardViewEvent1.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        Event model1 = model;
+                        Bundle b = new Bundle();
+                        b.putString("nameUser",model1.getUsuario());
+                        b.putString("eventFrom",model1.getOrigen());
+                        b.putString("eventTo",model1.getDestino());
+                        b.putString("eventHour",model1.getHora());
+                        b.putString("eventDate",model1.getFecha());
+
+
+                        Intent intent = new Intent(getActivity().getBaseContext(),
+                                EventInfoFragment.class);
+                        intent.putExtra("eventInfo", b);
+
+                        Fragment eventInfoFragment = new EventInfoFragment();
+                        eventInfoFragment.setArguments(b);
+                        getActivity()
+                                .getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.container, eventInfoFragment)
+                                .commit();
+                    }
+                });
 
             }
         };
@@ -107,10 +137,11 @@ public class PrincipalPageFragment extends Fragment {
 
     public static class EventViewHolder extends RecyclerView.ViewHolder{
 
-        View mview;
+        View mView;
+        CardView cardViewEvent1 = (CardView) itemView.findViewById(R.id.cardViewEvent);
         public  EventViewHolder(View itemView){
             super(itemView);
-            mview = itemView;
+            mView = itemView;
         }
 
         public void setOrigen(String origen){

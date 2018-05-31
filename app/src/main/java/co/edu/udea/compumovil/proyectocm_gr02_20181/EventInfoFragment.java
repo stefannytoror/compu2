@@ -7,6 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 /**
@@ -17,7 +22,7 @@ import android.view.ViewGroup;
  * Use the {@link EventInfoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EventInfoFragment extends Fragment {
+public class EventInfoFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,6 +33,10 @@ public class EventInfoFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private DatabaseReference mreference;
+
+    private TextView txtShowEventCreator, txtShowEventFrom, txtShowEventTo, txtShowEventHour, txtShowEventDate;
+    private Button btnJoinEvent;
 
     public EventInfoFragment() {
         // Required empty public constructor
@@ -64,7 +73,27 @@ public class EventInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_event_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_event_info, container, false);
+
+        mreference = FirebaseDatabase.getInstance().getReference().child("events");
+        mreference.keepSynced(true);
+
+        txtShowEventCreator = view.findViewById(R.id.txtShowEventCreator);
+        txtShowEventFrom = view.findViewById(R.id.txtShowEventFrom);
+        txtShowEventTo = view.findViewById(R.id.txtShowEventTo);
+        txtShowEventHour = view.findViewById(R.id.txtShowEventHour);
+        txtShowEventDate = view.findViewById(R.id.txtShowEventDate);
+
+        txtShowEventCreator.setText(getArguments().getString("nameUser"));
+        txtShowEventFrom.setText(getArguments().getString("eventFrom"));
+        txtShowEventTo.setText(getArguments().getString("eventTo"));
+        txtShowEventHour.setText(getArguments().getString("eventHour"));
+        txtShowEventDate.setText(getArguments().getString("eventDate"));
+
+        btnJoinEvent = view.findViewById(R.id.btnJoin);
+        btnJoinEvent.setOnClickListener(this);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -74,16 +103,7 @@ public class EventInfoFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
+
 
     @Override
     public void onDetach() {
@@ -105,4 +125,6 @@ public class EventInfoFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public void onClick(View view){}
 }

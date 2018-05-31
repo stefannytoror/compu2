@@ -5,7 +5,12 @@ package co.edu.udea.compumovil.proyectocm_gr02_20181;
  */
 
 public class Event {
-    private String uid , origen , destino , usuario;
+    private String uid;
+    private String origen;
+    private String destino;
+    private String usuario;
+    private String hora;
+    private String fecha;
 
     public Event(){
 
@@ -44,6 +49,22 @@ public class Event {
         this.usuario = usuario;
     }
 
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
     public Event (String uid , String origen , String  destino , String usuario){
         this.uid = uid; // primary key
         this.origen = origen;
@@ -57,8 +78,14 @@ public class Event {
         this.destino = destino;
     }
 
-
-
+    public Event(String uid, String origen, String destino, String usuario, String hora, String fecha) {
+        this.uid = uid;
+        this.origen = origen;
+        this.destino = destino;
+        this.usuario = usuario;
+        this.hora = hora;
+        this.fecha = fecha;
+    }
 }
 
 
