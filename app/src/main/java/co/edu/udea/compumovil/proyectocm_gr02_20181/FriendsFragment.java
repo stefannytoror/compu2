@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,13 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class FriendsFragment extends Fragment implements FirebaseAuth.AuthStateListener {
+public class FriendsFragment extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,6 +60,8 @@ public class FriendsFragment extends Fragment implements FirebaseAuth.AuthStateL
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
+        mreference = FirebaseDatabase.getInstance().getReference().child("events");
+        mreference.keepSynced(true);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.RecyclerFriends);
         mRecyclerView.setHasFixedSize(true);
@@ -67,50 +71,31 @@ public class FriendsFragment extends Fragment implements FirebaseAuth.AuthStateL
         return view;
     }
 
-    @Override
-    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-        user = firebaseAuth.getCurrentUser();
-        if (user != null) {
-            // User is signed in
-            Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-            Log.d(TAG, "onAuthStateChanged:PhotoUrl:" + user.getPhotoUrl());
-            Log.d(TAG, "onAuthStateChanged:Name:" + user.getDisplayName());
-            Log.d(TAG, "onAuthStateChanged:Email:" + user.getEmail());
 
-
-        } else {
-            // User is signed out
-            Log.d(TAG, "onAuthStateChanged:signed_out");
-        }
-    }
-
-   /* @Override
+   @Override
     public void onStart() {
         super.onStart();
-        final FirebaseRecyclerAdapter<DrinkInfo, FriendsViewHolder>
+        final FirebaseRecyclerAdapter<User, FriendsViewHolder>
                 firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<DrinkInfo, FriendsViewHolder>
-                (DrinkInfo.class,
+                new FirebaseRecyclerAdapter<User, FriendsViewHolder>
+                (User.class,
                         R.layout.fragment_cardview_friends,
                         FriendsViewHolder.class,
                         mreference) {
 
 
             @Override
-            public void populateViewHolder(FriendsViewHolder friendsViewHolder,
-                                           final DrinkInfo model,
-                                           final int position) {
+            public void populateViewHolder(FriendsViewHolder friendsViewHolder, final User model,int position) {
 
-                friendsViewHolder.setNombre(model.getNombre());
-                friendsViewHolder.setPrecio(model.getPrecio());
+                friendsViewHolder.setFriendName(model.getUserName());
                 //URL urlImage = ConvertToUrl(model.getmImageUrl());
 
-                Log.d("TAG", "populateViewHolder: " + model.getmImageUrl());
+                //Log.d("TAG", "populateViewHolder: " + model.getmImageUrl());
 
-                friendsViewHolder.setImageDrink(model.getmImageUrl(), getActivity());
+                //friendsViewHolder.setImageDrink(model.getmImageUrl(), getActivity());
 
 
-                friendsViewHolder.cardViewDrink.setOnClickListener(new View.OnClickListener() {
+                /*friendsViewHolder.cardViewFriend.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -131,17 +116,24 @@ public class FriendsFragment extends Fragment implements FirebaseAuth.AuthStateL
                         getActivity().getSupportFragmentManager()
                                 .beginTransaction().replace(R.id.container, drinksf).commit();
                     }
-                });
+                });*/
             }
         };
 
         mRecyclerView.setAdapter(firebaseRecyclerAdapter);
-    }*/
+    }
 
     public static class FriendsViewHolder extends RecyclerView.ViewHolder{
+        View mView;
+        CardView cardViewFriend = (CardView) itemView.findViewById(R.id.cardViewFriend);
         public FriendsViewHolder(View itemView){
             super(itemView);
+            mView = itemView;
+        }
 
+        public void setFriendName(String name){
+            TextView friendName = (TextView) itemView.findViewById(R.id.txtCVFriendName);
+            friendName.setText(name);
         }
     }
 }

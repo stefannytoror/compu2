@@ -176,8 +176,10 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
 
         switch (v.getId()){
             case R.id.btnCreate:
-                Event event = new Event(UUID.randomUUID().toString()
-                        ,input_from.getText().toString(),input_to.getText().toString(), "Santiago");
+                Event event = new Event(UUID.randomUUID().toString(),
+                        input_from.getText().toString(),
+                        input_to.getText().toString(),
+                        "Santiago");
 
                 mDatabaseReference.child("events").child(event.getUid()).setValue(event);
                 Intent ListSong = new Intent(getContext(), Main2Activity.class);
