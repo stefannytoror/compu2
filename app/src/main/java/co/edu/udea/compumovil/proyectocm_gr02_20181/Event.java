@@ -90,12 +90,13 @@ public class Event {
         this.usuario = usuario;
     }
 
-    public Event (String uid , String origen , String  destino,String hora ,String fecha){
+    public Event (String usuario,String uid , String origen , String  destino,String hora ,String fecha){
         this.uid = uid; // primary key
         this.origen = origen;
         this.destino = destino;
         this.hora = hora;
         this.fecha = fecha;
+        this.usuario = usuario;
     }
 
     public Event(String uid, String origen, String destino, String usuario, String hora,
