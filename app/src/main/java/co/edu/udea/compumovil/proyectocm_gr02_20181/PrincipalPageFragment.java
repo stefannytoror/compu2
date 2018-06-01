@@ -115,6 +115,7 @@ public class PrincipalPageFragment extends Fragment {
                         b.putString("eventDate",model1.getFecha());
                         b.putString("origin",model1.getCoordenadaOrigen());
                         b.putString("destination",model1.getCoordenadaDestino());
+                        b.putString("UUID",model1.getUid());
 
 
                         Intent intent = new Intent(getActivity().getBaseContext(),

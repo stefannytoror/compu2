@@ -172,6 +172,6 @@ public class SignUpActivity extends AppCompatActivity {
         String name = parts[0];
 
         User user = new User(name, email,eventsJoin, eventsCreated,uuid);
-        mDatabaseReference.child("users").child(uuid).setValue(user);
+        mDatabaseReference.child("users").child(uuid + "/info").setValue(user);
     }
 }

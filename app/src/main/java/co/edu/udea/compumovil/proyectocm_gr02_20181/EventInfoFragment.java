@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,6 +33,10 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private FirebaseAuth SWAuth;
+    private FirebaseUser currentUser = SWAuth.getInstance().getCurrentUser();
+    private String uuid = currentUser.getUid();
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -39,6 +46,10 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
 
     private TextView txtShowEventCreator, txtShowEventFrom, txtShowEventTo, txtShowEventHour, txtShowEventDate;
     private Button btnJoinEvent;
+    private String nameUser,from,to,uid,hour,date;
+
+    private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference();
 
     public EventInfoFragment() {
         // Required empty public constructor
@@ -86,11 +97,19 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
         txtShowEventHour = view.findViewById(R.id.txtShowEventHour);
         txtShowEventDate = view.findViewById(R.id.txtShowEventDate);
 
-        txtShowEventCreator.setText(getArguments().getString("nameUser"));
-        txtShowEventFrom.setText(getArguments().getString("eventFrom"));
-        txtShowEventTo.setText(getArguments().getString("eventTo"));
-        txtShowEventHour.setText(getArguments().getString("eventHour"));
-        txtShowEventDate.setText(getArguments().getString("eventDate"));
+        nameUser = getArguments().getString("nameUser");
+        from = getArguments().getString("eventFrom");
+        to = getArguments().getString("eventTo");
+        hour = getArguments().getString("eventHour");
+        date = getArguments().getString("eventDate");
+        uid = getArguments().getString("UUID");
+
+
+        txtShowEventCreator.setText(nameUser);
+        txtShowEventFrom.setText(from);
+        txtShowEventTo.setText(to);
+        txtShowEventHour.setText(hour);
+        txtShowEventDate.setText(date);
 
         btnJoinEvent = view.findViewById(R.id.btnJoin);
         btnJoinEvent.setOnClickListener(this);
@@ -136,8 +155,21 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
         Log.d("TAGINFO", "onClick: " + getArguments().getString("origin"));
         Log.d("TAGINFO", "onClick: "+ getArguments().getString("destination"));
 
+        joinEvent();
+
         Intent intent = new Intent(getContext(), MapActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
     }
+
+    public void joinEvent(){
+
+        Event event = new Event(uid,from,to,hour,date);
+
+        mDatabaseReference.child("users/" +uuid +"/misEventos")
+                .child(uid).setValue(event);
+
+    }
+
+
 }
