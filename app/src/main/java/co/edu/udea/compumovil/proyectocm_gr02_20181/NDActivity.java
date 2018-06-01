@@ -118,6 +118,11 @@ public class NDActivity extends AppCompatActivity
                     .commit();
 
         } else if (id == R.id.nav_eventosUnidos) {
+            fragment = new JoinEventsFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container,fragment)
+                    .commit();
 
         } else if (id == R.id.nav_ajustes) {
 

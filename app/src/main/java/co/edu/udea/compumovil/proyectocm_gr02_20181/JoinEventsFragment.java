@@ -1,12 +1,24 @@
 package co.edu.udea.compumovil.proyectocm_gr02_20181;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 /**
@@ -26,6 +38,12 @@ public class JoinEventsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView mRecyclerView;
+    private DatabaseReference mreference;
+    private FirebaseAuth SwAuth;
+    private FirebaseUser currentUser = SwAuth.getInstance().getCurrentUser();
+    private String uuid = currentUser.getUid().toString();
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +82,18 @@ public class JoinEventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_join_events, container, false);
+        View view = inflater.inflate(R.layout.fragment_join_events, container, false);
+        mreference = FirebaseDatabase.getInstance().getReference().child("users/"+uuid+"/misEventos");
+        mreference.keepSynced(true);
+
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.RecyclerJoinEvents);
+        mRecyclerView.setHasFixedSize(true);
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        // revisar
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -75,15 +104,84 @@ public class JoinEventsFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+    public  void onStart(){
+        super.onStart();
+        FirebaseRecyclerAdapter<Event,PrincipalPageFragment.EventViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Event,PrincipalPageFragment.EventViewHolder>
+                (Event.class,R.layout.cardview_events,PrincipalPageFragment.EventViewHolder.class,mreference){
+
+            @Override
+            public  void populateViewHolder(PrincipalPageFragment.EventViewHolder eventViewHolder, final Event model , int position){
+                eventViewHolder.setOrigen(model.getOrigen());
+                eventViewHolder.setDestino(model.getDestino());
+
+
+
+
+                eventViewHolder.cardViewEvent1.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        Event model1 = model;
+                        Bundle b = new Bundle();
+                        b.putString("nameUser",model1.getUsuario());
+                        b.putString("eventFrom",model1.getOrigen());
+                        b.putString("eventTo",model1.getDestino());
+                        b.putString("eventHour",model1.getHora());
+                        b.putString("eventDate",model1.getFecha());
+                        b.putString("origin",model1.getCoordenadaOrigen());
+                        b.putString("destination",model1.getCoordenadaDestino());
+                        b.putString("UUID",model1.getUid());
+
+
+                        Intent intent = new Intent(getActivity().getBaseContext(),
+                                EventInfoFragment.class);
+                        intent.putExtra("eventInfo", b);
+
+                        Fragment eventInfoFragment = new EventInfoFragment();
+                        eventInfoFragment.setArguments(b);
+                        getActivity()
+                                .getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.container, eventInfoFragment)
+                                .commit();
+
+                    }
+                });
+
+            }
+        };
+
+        mRecyclerView.setAdapter(firebaseRecyclerAdapter);
     }
+
+    public static class EventViewHolder extends RecyclerView.ViewHolder{
+
+        View mView;
+        CardView cardViewEvent1 = (CardView) itemView.findViewById(R.id.cardViewEvent);
+        public  EventViewHolder(View itemView){
+            super(itemView);
+            mView = itemView;
+        }
+
+        public void setOrigen(String origen){
+            TextView postOrigen = (TextView) itemView.findViewById(R.id.txtCV_EventFrom);
+            postOrigen.setText(origen);
+
+            TextView textView = (TextView) itemView.findViewById(R.id.txtCV_Unete);
+            textView.setVisibility(View.INVISIBLE);
+
+
+        }
+        public void setDestino(String destino){
+            TextView postDestino = (TextView) itemView.findViewById(R.id.txtCV_EventTo);
+            postDestino.setText(destino);
+
+        }
+
+    }
+
+
 
     @Override
     public void onDetach() {
