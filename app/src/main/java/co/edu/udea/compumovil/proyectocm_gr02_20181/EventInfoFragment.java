@@ -45,7 +45,7 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
     private DatabaseReference mreference;
 
     private TextView txtShowEventCreator, txtShowEventFrom, txtShowEventTo, txtShowEventHour, txtShowEventDate;
-    private Button btnJoinEvent;
+    private Button btnJoinEvent , btnSeeMap;
     private String nameUser,from,to,uid,hour,date;
 
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -114,6 +114,9 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
         btnJoinEvent = view.findViewById(R.id.btnJoin);
         btnJoinEvent.setOnClickListener(this);
 
+        btnSeeMap = view.findViewById(R.id.btnSeeMap);
+        btnSeeMap.setOnClickListener(this);
+
         return view;
     }
 
@@ -148,23 +151,28 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
     }
 
     public void onClick(View view){
-        Bundle bundle = new Bundle();
-        bundle.putString("origin1",getArguments().getString("origin"));
-        bundle.putString("destination1",getArguments().getString("destination"));
+        int id = view.getId();
+        if (id == R.id.btnSeeMap){
+            Bundle bundle = new Bundle();
+            bundle.putString("origin1",getArguments().getString("origin"));
+            bundle.putString("destination1",getArguments().getString("destination"));
 
-        Log.d("TAGINFO", "onClick: " + getArguments().getString("origin"));
-        Log.d("TAGINFO", "onClick: "+ getArguments().getString("destination"));
+            Log.d("TAGINFO", "onClick: " + getArguments().getString("origin"));
+            Log.d("TAGINFO", "onClick: "+ getArguments().getString("destination"));
 
-        joinEvent();
+            Intent intent = new Intent(getContext(), MapActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+        else if (id== R.id.btnJoin){
+            joinEvent();
+        }
 
-        Intent intent = new Intent(getContext(), MapActivity.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
     }
 
     public void joinEvent(){
 
-        Event event = new Event(uid,from,to,hour,date);
+        Event event = new Event(nameUser,uid,from,to,hour,date);
 
         mDatabaseReference.child("users/" +uuid +"/misEventos")
                 .child(uid).setValue(event);

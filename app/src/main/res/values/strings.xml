@@ -16,10 +16,10 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="itemND_principal">Principal</string>
+    <string name="itemND_principal">Agregar Evento</string>
     <string name="itemND_Perfil">Perfil</string>
     <string name="itemND_Amigos">Amigos</string>
-    <string name="itemND_MisEventos">Mis Eventos</string>
+    <string name="itemND_MisEventos">Eventos</string>
     <string name="itemND_EventosUnidos">Eventos unidos</string>
     <string name="itemND_Ajustes">Ajustes</string>
 
@@ -41,6 +41,7 @@
 
     <string name="txtShowUser">Creado por: </string>
     <string name="btnJoin">Unirse</string>
+    <string name="btnSeeRoute">Ver Ruta</string>
 
     <string name="txtFriendName">Nombre de amigo</string>
     <string name="btnRateFriend">Calificar</string>
