@@ -19,7 +19,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@android:color/holo_blue_dark"
+            android:textSize="25dp"
+            android:background="@color/colorPrimary"
             android:text="@string/btnJoin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,10 +34,11 @@
             android:layout_height="29dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/date"
             android:textColor="@color/colorBlack"
             android:textColorHighlight="@color/colorBlack"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.19"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +52,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="@string/time"
+            android:textSize="20dp"
             android:textColor="@color/colorBlack"
             android:textColorHighlight="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -68,6 +71,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="@string/CV_EventTo"
+            android:textSize="20dp"
             android:textColor="@color/colorBlack"
             android:textColorHighlight="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -83,11 +87,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="32dp"
             android:text="@string/CV_Event"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            android:textSize="30dp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.188"
+            app:layout_constraintHorizontal_bias="0.167"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,6 +106,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/txtShowUser"
+            android:textSize="20dp"
             android:textColor="@color/colorBlack"
             android:textColorHighlight="@color/colorBlack"
             app:layout_constraintBottom_toTopOf="@+id/txtShowFrom5"
@@ -116,6 +123,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:text="@string/CV_EventFrom"
+            android:textSize="20dp"
             android:textColor="@color/colorBlack"
             android:textColorHighlight="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -143,26 +151,31 @@
             android:id="@+id/txtShowEventCreator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="0dp"
+            android:text="TextView"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.151"
+            app:layout_constraintHorizontal_bias="0.297"
             app:layout_constraintStart_toEndOf="@+id/txtShowUser"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.168" />
+            app:layout_constraintVertical_bias="0.19" />
 
         <TextView
             android:id="@+id/txtShowEventFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:text="TextView"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/mapView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.212"
+            app:layout_constraintHorizontal_bias="0.395"
             app:layout_constraintStart_toEndOf="@+id/txtShowFrom5"
             app:layout_constraintTop_toBottomOf="@+id/txtShowEventCreator"
-            app:layout_constraintVertical_bias="0.158" />
+            app:layout_constraintVertical_bias="0.076" />
 
         <TextView
             android:id="@+id/txtShowEventTo"
@@ -170,38 +183,42 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="TextView"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/mapView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.212"
+            app:layout_constraintHorizontal_bias="0.365"
             app:layout_constraintStart_toEndOf="@+id/txtShowTo"
             app:layout_constraintTop_toBottomOf="@+id/txtShowEventFrom"
-            app:layout_constraintVertical_bias="0.184" />
+            app:layout_constraintVertical_bias="0.132" />
 
         <TextView
             android:id="@+id/txtShowEventHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="148dp"
-            android:layout_marginStart="8dp"
             android:text="TextView"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/mapView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.395"
             app:layout_constraintStart_toEndOf="@+id/txtShowTime"
             app:layout_constraintTop_toBottomOf="@+id/txtShowEventTo"
-            app:layout_constraintVertical_bias="0.16" />
+            app:layout_constraintVertical_bias="0.178" />
 
         <TextView
             android:id="@+id/txtShowEventDate"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:text="TextView"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/mapView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.311"
+            app:layout_constraintHorizontal_bias="0.395"
             app:layout_constraintStart_toEndOf="@+id/txtShowDate"
             app:layout_constraintTop_toBottomOf="@+id/txtShowEventHour"
-            app:layout_constraintVertical_bias="0.416" />
+            app:layout_constraintVertical_bias="0.4" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

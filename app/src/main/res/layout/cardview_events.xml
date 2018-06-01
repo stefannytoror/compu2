@@ -30,12 +30,13 @@
                 android:text="@string/CV_EventTo"
                 android:textColor="@color/colorBlack"
                 android:textSize="18dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtCV_Unete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.322"
+                app:layout_constraintHorizontal_bias="0.339"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.406" />
+                app:layout_constraintVertical_bias="0.528" />
 
             <TextView
                 android:id="@+id/txtCV_Event"
@@ -44,7 +45,8 @@
                 android:layout_marginStart="16dp"
                 android:text="@string/CV_Event"
                 android:textColor="@color/colorBlack"
-                android:textSize="20dp"
+                android:textSize="22dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtCV_Unete"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -60,6 +62,7 @@
                 android:text="@string/CV_Unete"
                 android:textColor="@color/colorBlack"
                 android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.507"
@@ -79,7 +82,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtCV_EventFromTitle"
                 app:layout_constraintVertical_bias="0.272"
-                android:textColor="@color/colorBlackLight"/>
+                android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:id="@+id/txtCV_EventTo"
@@ -93,7 +96,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtCV_EventToTitle"
                 app:layout_constraintVertical_bias="0.333"
-                android:textColor="@color/colorBlackLight"/>
+                android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:id="@+id/txtCV_EventFromTitle"
@@ -102,6 +105,7 @@
                 android:text="@string/CV_EventFrom"
                 android:textColor="@color/colorBlack"
                 android:textSize="18dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtCV_EventToTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.116"

@@ -15,17 +15,17 @@
             android:id="@+id/btnAddLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="104dp"
+            android:layout_marginBottom="0dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:backgroundTint="@android:color/holo_blue_dark"
+            android:background="@color/colorPrimary"
             android:onClick="onClick"
             android:text="@string/agregarUbicacion"
             android:textSize="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnCreate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.428"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_createDate" />
 
         <EditText
             android:id="@+id/txtCreateTo"
@@ -95,23 +95,30 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:ems="10"
             android:hint="@string/timeFormat"
             android:inputType="textPersonName|time"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.259"
+            app:layout_constraintHorizontal_bias="0.172"
             app:layout_constraintStart_toEndOf="@+id/txtHora2"
             app:layout_constraintTop_toBottomOf="@+id/txtCreateTo" />
 
         <EditText
             android:id="@+id/txt_createDate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="0dp"
             android:ems="10"
             android:inputType="textPersonName|date"
-            tools:layout_editor_absoluteX="105dp"
-            tools:layout_editor_absoluteY="232dp" />
+            app:layout_constraintBottom_toTopOf="@+id/btnAddLocation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.162"
+            app:layout_constraintStart_toEndOf="@+id/txtHora"
+            app:layout_constraintTop_toBottomOf="@+id/txt_createHour"
+            app:layout_constraintVertical_bias="0.336" />
 
         <ImageButton
             android:id="@+id/imageButton3"
@@ -131,13 +138,15 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:backgroundTint="@android:color/holo_blue_dark"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
             android:onClick="onClick"
             android:text="@string/btnCreate"
             android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.428"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddLocation"
+            app:layout_constraintVertical_bias="0.8" />
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
