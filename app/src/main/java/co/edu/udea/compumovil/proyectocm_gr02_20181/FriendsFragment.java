@@ -32,11 +32,12 @@ public class FriendsFragment extends Fragment{
     private String mParam1;
     private String mParam2;
     private RecyclerView mRecyclerView;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference mreference;
 
     private FirebaseAuth SWAuth;
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseUser user = SWAuth.getInstance().getCurrentUser();
+    private String uuid = user.getUid();
     private String TAG = "FriendsFragment";
     private TextView userName, userEmail;
 
@@ -61,7 +62,8 @@ public class FriendsFragment extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
-        mreference = FirebaseDatabase.getInstance().getReference().child("users");
+        mreference = FirebaseDatabase.getInstance().getReference().child("users/"+uuid+"/misAmigos/"+uuid);
+        Log.d(TAG, "onCreateView: "+ mreference);
         mreference.keepSynced(true);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.RecyclerFriends);
@@ -89,6 +91,7 @@ public class FriendsFragment extends Fragment{
             public void populateViewHolder(FriendsViewHolder friendsViewHolder, final User model,int position) {
 
                 friendsViewHolder.setFriendName(model.getUserName());
+                Log.d("TAG", "populateViewHolder: " + model.getUserName());
                 //URL urlImage = ConvertToUrl(model.getmImageUrl());
 
                 //Log.d("TAG", "populateViewHolder: " + model.getmImageUrl());
@@ -96,7 +99,7 @@ public class FriendsFragment extends Fragment{
                 //friendsViewHolder.setImageDrink(model.getmImageUrl(), getActivity());
 
 
-                friendsViewHolder.cardViewFriend.setOnClickListener(new View.OnClickListener() {
+                /*friendsViewHolder.cardViewFriend.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -118,7 +121,7 @@ public class FriendsFragment extends Fragment{
                                 .replace(R.id.container, friendProfileFragment)
                                 .commit();
                     }
-                });
+                });*/
             }
         };
 

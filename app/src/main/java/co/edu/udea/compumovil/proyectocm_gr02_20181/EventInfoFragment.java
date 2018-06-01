@@ -51,6 +51,8 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference();
 
+    Fragment fragment = null;
+
     public EventInfoFragment() {
         // Required empty public constructor
     }
@@ -92,6 +94,7 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
         mreference.keepSynced(true);
 
         txtShowEventCreator = view.findViewById(R.id.txtShowEventCreator);
+        txtShowEventCreator.setOnClickListener(this);
         txtShowEventFrom = view.findViewById(R.id.txtShowEventFrom);
         txtShowEventTo = view.findViewById(R.id.txtShowEventTo);
         txtShowEventHour = view.findViewById(R.id.txtShowEventHour);
@@ -177,6 +180,15 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
             btnJoinEvent.setEnabled(false);
 
 
+        }else if(id == R.id.txtShowEventCreator){
+            Bundle b = new Bundle();
+            b.putString("nameFriend",nameUser);
+            fragment = new FriendProfileFragment();
+            fragment.setArguments(b);
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container,fragment)
+                    .commit();
         }
 
     }

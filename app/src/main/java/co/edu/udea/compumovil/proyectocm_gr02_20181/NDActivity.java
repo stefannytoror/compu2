@@ -50,6 +50,11 @@ public class NDActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Fragment fragment = new PrincipalPageFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container,fragment)
+                .commit();
     }
 
 
@@ -109,6 +114,11 @@ public class NDActivity extends AppCompatActivity
                     .commit();
 
         } else if (id == R.id.nav_friends) {
+            fragment = new FriendsFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container,fragment)
+                    .commit();
 
         } else if (id == R.id.nav_misEventos) {
             fragment = new PrincipalPageFragment();
