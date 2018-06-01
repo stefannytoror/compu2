@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -129,8 +130,11 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
 
     public void onClick(View view){
         Bundle bundle = new Bundle();
-        bundle.putString("origin",getArguments().getString("origin"));
-        bundle.putString("destination",getArguments().getString("destination"));
+        bundle.putString("origin1",getArguments().getString("origin"));
+        bundle.putString("destination1",getArguments().getString("destination"));
+
+        Log.d("TAGINFO", "onClick: " + getArguments().getString("origin"));
+        Log.d("TAGINFO", "onClick: "+ getArguments().getString("destination"));
 
         Intent intent = new Intent(getContext(), MapActivity.class);
         intent.putExtras(bundle);

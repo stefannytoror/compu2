@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebStorage;
 
 import com.akexorcist.googledirection.DirectionCallback;
 import com.akexorcist.googledirection.GoogleDirection;
@@ -37,27 +38,32 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         Bundle b = getIntent().getExtras();
         Log.d("TAG", "onCreate: " + b);
-        String[] corte1 = b.getString("origin").split("\\(");
-        corte1 = corte1[1].split("\\)");
+        String[] corte1 = b.getString("origin1").split("\\(");
+        String[] cortetemp = corte1[1].split("\\)");
 
-        String[] latlong1 = corte1[0].split(",");
+        String[] latlong1 = cortetemp[0].split(",");
         double latitud = Double.parseDouble(latlong1[0]);
         double longitud = Double.parseDouble(latlong1[1]);
         origin = new LatLng(latitud,longitud);
 
+        Log.d("TAG destination", "onCreate: " + b.getString("destination"));
 
-        corte1 = b.getString("destination").split("\\(");
-        corte1 = corte1[1].split("\\)");
+        String[] corte2 = b.getString("destination1").split("\\(");
+        String[] cortetemp2 = corte2[1].split("\\)");
 
 
-        String[] latlong2 = corte1[0].split(",");
-        latitud = Double.parseDouble(latlong1[0]);
-        longitud = Double.parseDouble(latlong1[1]);
+        String[] latlong2 = cortetemp2[0].split(",");
+        latitud = Double.parseDouble(latlong2[0]);
+        longitud = Double.parseDouble(latlong2[1]);
         destination = new LatLng(latitud,longitud);
+
+        Log.d("TAG", "onCreate: "+ destination);
+        Log.d("TAG", "onCreate: "+ origin);
+
 
 
         ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map2)).getMapAsync(this);
-        requestDirection();
+        //requestDirection();
     }
 
     public void requestDirection() {
@@ -71,7 +77,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(final GoogleMap googleMap2) {
+
         this.googleMap2 = googleMap2;
+        requestDirection();
     }
 
     @Override
