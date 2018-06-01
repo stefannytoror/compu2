@@ -113,6 +113,8 @@ public class PrincipalPageFragment extends Fragment {
                         b.putString("eventTo",model1.getDestino());
                         b.putString("eventHour",model1.getHora());
                         b.putString("eventDate",model1.getFecha());
+                        b.putString("origin",model1.getCoordenadaOrigen());
+                        b.putString("destination",model1.getCoordenadaDestino());
 
 
                         Intent intent = new Intent(getActivity().getBaseContext(),

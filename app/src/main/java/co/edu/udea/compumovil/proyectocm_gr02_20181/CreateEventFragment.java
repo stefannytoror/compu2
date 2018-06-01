@@ -42,7 +42,7 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
     private String mParam1;
     private String mParam2;
 
-    private EditText input_event , input_from , input_to;
+    private EditText input_event , input_from , input_to,input_hour,input_date;
     private RecyclerView cardViewList;
     private List<Event> list_events = new ArrayList<>();
 
@@ -91,8 +91,14 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
         Button btnCreateEvent = (Button)view.findViewById(R.id.btnCreate);
         btnCreateEvent.setOnClickListener(this);
 
+        Button btnAddLocation = (Button)view.findViewById(R.id.btnAddLocation);
+        btnAddLocation.setOnClickListener(this);
+
         input_from = (EditText) view.findViewById(R.id.txtCreateFrom);
         input_to = (EditText) view.findViewById(R.id.txtCreateTo);
+        input_hour = (EditText) view.findViewById(R.id.txt_createHour);
+        input_date = (EditText) view.findViewById(R.id.txt_createDate);
+
 
         cardViewList = (RecyclerView)view.findViewById(R.id.RecyclerPrincipalPage) ;
 
@@ -176,15 +182,32 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
 
         switch (v.getId()){
             case R.id.btnCreate:
+
                 Event event = new Event(UUID.randomUUID().toString(),
                         input_from.getText().toString(),
                         input_to.getText().toString(),
-                        "Santiago");
+                        "Santiago",input_hour.toString(),
+                        input_date.toString(),
+                        getArguments().getString("coordenadaOrigen"),
+                        getArguments().getString("coordenadaDestino"));
 
                 mDatabaseReference.child("events").child(event.getUid()).setValue(event);
-                Intent ListSong = new Intent(getContext(), Main2Activity.class);
-                startActivity(ListSong);
+                /*Intent ListSong = new Intent(getContext(), Main2Activity.class);
+                startActivity(ListSong);*/
                 break;
+            case R.id.btnAddLocation:
+                Bundle b = new Bundle();
+                b.putString("from",input_from.getText().toString());
+                b.putString("to",input_to.getText().toString());
+                b.putString("hour",input_hour.getText().toString());
+                b.putString("date",input_date.getText().toString());
+                b.putString("UUID",UUID.randomUUID().toString());
+
+                Intent intent = new Intent(getContext(), Main2Activity.class);
+                intent.putExtras(b);
+                startActivity(intent);
+
+
         }
 
     }

@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.proyectocm_gr02_20181;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
  * Use the {@link EventInfoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EventInfoFragment extends Fragment implements View.OnClickListener {
+public class  EventInfoFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -126,5 +127,13 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
         void onFragmentInteraction(Uri uri);
     }
 
-    public void onClick(View view){}
+    public void onClick(View view){
+        Bundle bundle = new Bundle();
+        bundle.putString("origin",getArguments().getString("origin"));
+        bundle.putString("destination",getArguments().getString("destination"));
+
+        Intent intent = new Intent(getContext(), MapActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 }

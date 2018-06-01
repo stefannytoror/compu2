@@ -15,11 +15,18 @@
         tools:context="co.edu.udea.compumovil.proyectocm_gr02_20181.Main2Activity" />
 
     <Button
+        android:id="@+id/btn_saveRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Guardar" />
+    <Button
         android:id="@+id/btn_request_direction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="NO SE QUE VA" />
+        android:text="Ruta" />
 
 </RelativeLayout>

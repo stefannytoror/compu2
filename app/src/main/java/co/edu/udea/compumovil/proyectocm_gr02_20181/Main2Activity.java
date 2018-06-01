@@ -1,7 +1,11 @@
 package co.edu.udea.compumovil.proyectocm_gr02_20181;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,16 +26,26 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener, DirectionCallback {
 
-    private Button btnRequestDirection;
+    private Button btnRequestDirection , btnSaveRoute;
     private GoogleMap googleMap;
     private LatLng origin; // = new LatLng(37.7849569, -122.4068855);
     private LatLng destination; // = new LatLng(37.7814432, -122.4460177);
     private ArrayList<LatLng> listPoints;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
+
+    private String from ;
+    private String to;
+    private String hour;
+    private String UUID;
+    private String date;
 
     private String serverKey = "AIzaSyDbuQvU2I4_emVOJ0vlP6flEqUQRDvl3Ig";
     @Override
@@ -41,12 +55,24 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
 
         btnRequestDirection = findViewById(R.id.btn_request_direction);
         btnRequestDirection.setOnClickListener(this);
+        btnSaveRoute = findViewById(R.id.btn_saveRoute);
+        btnSaveRoute.setOnClickListener(this);
         listPoints = new ArrayList<>();
         ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
     }
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         this.googleMap = googleMap;
+        Bundle b = getIntent().getExtras();
+        from =b.getString("from");
+        to =b.getString("to");
+        hour = b.getString("hour");
+        date = b.getString("date");
+        UUID = b.getString("UUID");
+
+        Log.d("TAG", "onMapReady: " + b);
+        Log.d("TAG", "onMapReady: "+ from);
+
         googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
@@ -86,6 +112,31 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
         int id = v.getId();
         if (id == R.id.btn_request_direction) {
             requestDirection();
+
+            // save info
+
+        }
+        else if(id==R.id.btn_saveRoute){
+            Bundle b = getIntent().getExtras();
+            from =b.getString("from");
+            to =b.getString("to");
+            hour = b.getString("hour");
+            date = b.getString("date");
+            UUID = b.getString("UUID");
+
+            Log.d("TAG", "onMapReady: " + b);
+            Log.d("TAG", "onMapReady: "+ from);
+            Event event = new Event(UUID,from,to,"santiago",hour,date,origin.toString(),destination.toString());
+            mFirebaseDatabase = FirebaseDatabase.getInstance();
+            mDatabaseReference = mFirebaseDatabase.getReference();
+            mDatabaseReference.child("events").child(event.getUid()).setValue(event);
+
+            Intent intent = new Intent(getApplicationContext(), NDActivity.class);
+
+            startActivity(intent);
+
+
+
         }
     }
 
@@ -112,7 +163,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
             googleMap.addPolyline(DirectionConverter.createPolyline(this, directionPositionList, 5, Color.RED));
             setCameraWithCoordinationBounds(route);
 
-            btnRequestDirection.setVisibility(View.GONE);
+            //btnRequestDirection.setVisibility(View.GONE);
         } else {
             Snackbar.make(btnRequestDirection, direction.getStatus(), Snackbar.LENGTH_SHORT).show();
         }

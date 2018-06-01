@@ -11,9 +11,27 @@ public class Event {
     private String usuario;
     private String hora;
     private String fecha;
+    private String coordenadaOrigen;
+    private String coordenadaDestino;
 
     public Event(){
 
+    }
+
+    public String getCoordenadaOrigen() {
+        return coordenadaOrigen;
+    }
+
+    public void setCoordenadaOrigen(String coordenadaOrigen) {
+        this.coordenadaOrigen = coordenadaOrigen;
+    }
+
+    public String getCoordenadaDestino() {
+        return coordenadaDestino;
+    }
+
+    public void setCoordenadaDestino(String coordenadaDestino) {
+        this.coordenadaDestino = coordenadaDestino;
     }
 
     public String getUid() {
@@ -78,13 +96,16 @@ public class Event {
         this.destino = destino;
     }
 
-    public Event(String uid, String origen, String destino, String usuario, String hora, String fecha) {
+    public Event(String uid, String origen, String destino, String usuario, String hora,
+                 String fecha, String coordenadaOrigen , String coordenadaDestino) {
         this.uid = uid;
         this.origen = origen;
         this.destino = destino;
         this.usuario = usuario;
         this.hora = hora;
         this.fecha = fecha;
+        this.coordenadaOrigen = coordenadaOrigen;
+        this.coordenadaDestino = coordenadaDestino;
     }
 }
 

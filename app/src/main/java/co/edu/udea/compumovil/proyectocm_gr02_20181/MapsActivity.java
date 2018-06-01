@@ -3,9 +3,6 @@ package co.edu.udea.compumovil.proyectocm_gr02_20181;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
-import com.akexorcist.googledirection.DirectionCallback;
-import com.akexorcist.googledirection.GoogleDirection;
-import com.akexorcist.googledirection.model.Direction;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -45,23 +42,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-        String serverKey = "AIzaSyDtUNETpVuSlxFzK1Q1Nbjw1M-Kzwi2I6M";
-        LatLng origin = new LatLng(6.266985, -75.569133);
-        LatLng destination = new LatLng(6.263999, -75.565131);
-        GoogleDirection.withServerKey(serverKey)
-                .from(origin)
-                .to(destination)
-                .execute(new DirectionCallback() {
-                    @Override
-                    public void onDirectionSuccess(Direction direction, String rawBody) {
-                        // Do something here
-                    }
-
-                    @Override
-                    public void onDirectionFailure(Throwable t) {
-                        // Do something here
-                    }
-                });
     }
 }
