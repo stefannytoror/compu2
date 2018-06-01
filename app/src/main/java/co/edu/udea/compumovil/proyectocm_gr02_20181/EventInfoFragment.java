@@ -112,6 +112,14 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
         txtShowEventDate.setText(date);
 
         btnJoinEvent = view.findViewById(R.id.btnJoin);
+        if (getArguments().get("eventoUnido")== "1"){
+            btnJoinEvent.setVisibility(View.INVISIBLE);
+            btnJoinEvent.setEnabled(false);
+        }else {
+            btnJoinEvent.setOnClickListener(this);
+        }
+
+
         btnJoinEvent.setOnClickListener(this);
 
         btnSeeMap = view.findViewById(R.id.btnSeeMap);
@@ -166,6 +174,9 @@ public class  EventInfoFragment extends Fragment implements View.OnClickListener
         }
         else if (id== R.id.btnJoin){
             joinEvent();
+            btnJoinEvent.setEnabled(false);
+
+
         }
 
     }

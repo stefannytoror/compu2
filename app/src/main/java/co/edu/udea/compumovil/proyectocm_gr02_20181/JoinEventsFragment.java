@@ -132,6 +132,7 @@ public class JoinEventsFragment extends Fragment {
                         b.putString("origin",model1.getCoordenadaOrigen());
                         b.putString("destination",model1.getCoordenadaDestino());
                         b.putString("UUID",model1.getUid());
+                        b.putString("eventoUnido","1");
 
 
                         Intent intent = new Intent(getActivity().getBaseContext(),
