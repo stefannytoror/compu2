@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +36,7 @@ import java.util.UUID;
  * Use the {@link CreateEventFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateEventFragment extends Fragment implements View.OnClickListener {
+public class CreateEventFragment extends Fragment implements View.OnClickListener,FirebaseAuth.AuthStateListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -48,6 +52,11 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
+    private FirebaseAuth SwAuth;
+    private FirebaseUser currentUser = SwAuth.getInstance().getCurrentUser();
+    private String TAG = "CreateEventFragment";
+    private String email = currentUser.getEmail();
+
 
 
     private OnFragmentInteractionListener mListener;
@@ -178,15 +187,30 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
         void onFragmentInteraction(Uri uri);
     }
 
+    @Override
+    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+        currentUser= firebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            // User is signed in
+            Log.d(TAG, "onAuthStateChanged:signed_in:" + currentUser.getUid());
+            Log.d(TAG, "onAuthStateChanged:PhotoUrl:" + currentUser.getPhotoUrl());
+        } else {
+            // User is signed out
+            Log.d(TAG, "onAuthStateChanged:signed_out");
+        }
+
+    }
+
     public void onClick(View v){
 
         switch (v.getId()){
             case R.id.btnCreate:
-
+                String string = email;
+                String[] parts = string.split("@");
+                String name = parts[0];
                 Event event = new Event(UUID.randomUUID().toString(),
                         input_from.getText().toString(),
-                        input_to.getText().toString(),
-                        "Santiago",input_hour.toString(),
+                        input_to.getText().toString(),name,input_hour.toString(),
                         input_date.toString(),
                         getArguments().getString("coordenadaOrigen"),
                         getArguments().getString("coordenadaDestino"));
@@ -196,12 +220,16 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
                 startActivity(ListSong);*/
                 break;
             case R.id.btnAddLocation:
+                String string1 = email;
+                String[] parts1 = string1.split("@");
+                String name1 = parts1[0];
                 Bundle b = new Bundle();
                 b.putString("from",input_from.getText().toString());
                 b.putString("to",input_to.getText().toString());
                 b.putString("hour",input_hour.getText().toString());
                 b.putString("date",input_date.getText().toString());
                 b.putString("UUID",UUID.randomUUID().toString());
+                b.putString("name",name1);
 
                 Intent intent = new Intent(getContext(), Main2Activity.class);
                 intent.putExtras(b);
