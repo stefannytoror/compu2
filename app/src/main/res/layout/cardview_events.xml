@@ -13,6 +13,7 @@
         android:layout_margin="@dimen/cardview_compat_inset_shadow"
         app:cardElevation="15dp"
         app:cardPreventCornerOverlap="true"
+        app:cardCornerRadius="8dp"
         android:backgroundTint="@color/colorTeal">
 
         <android.support.constraint.ConstraintLayout

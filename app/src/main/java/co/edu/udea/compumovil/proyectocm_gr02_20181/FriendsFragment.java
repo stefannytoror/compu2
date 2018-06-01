@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.proyectocm_gr02_20181;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -60,7 +61,7 @@ public class FriendsFragment extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
-        mreference = FirebaseDatabase.getInstance().getReference().child("events");
+        mreference = FirebaseDatabase.getInstance().getReference().child("users");
         mreference.keepSynced(true);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.RecyclerFriends);
@@ -95,28 +96,28 @@ public class FriendsFragment extends Fragment{
                 //friendsViewHolder.setImageDrink(model.getmImageUrl(), getActivity());
 
 
-                /*friendsViewHolder.cardViewFriend.setOnClickListener(new View.OnClickListener() {
+                friendsViewHolder.cardViewFriend.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        DrinkInfo model1 = model;
+                        User model1 = model;
                         Bundle b = new Bundle();
-                        b.putString("nameDrink", model1.getNombre());
-                        b.putString("priceDrink", model1.getPrecio());
-                        b.putString("ingredientsDrinks", model1.getIngredientes());
-                        b.putString("pictureDrinks", model1.getmImageUrl());
+                        b.putString("nameDrink", model1.getUserName());
+
 
                         Intent intent = new Intent(getActivity().getBaseContext(),
-                                ShowCompleteInfoDrink.class);
-                        intent.putExtra("drinkData", b);
+                                FriendProfileFragment.class);
+                        intent.putExtra("friendData", b);
 
 
-                        Fragment drinksf = new ShowCompleteInfoDrink();
-                        drinksf.setArguments(b);
+                        Fragment friendProfileFragment = new FriendProfileFragment();
+                        friendProfileFragment.setArguments(b);
                         getActivity().getSupportFragmentManager()
-                                .beginTransaction().replace(R.id.container, drinksf).commit();
+                                .beginTransaction()
+                                .replace(R.id.container, friendProfileFragment)
+                                .commit();
                     }
-                });*/
+                });
             }
         };
 
