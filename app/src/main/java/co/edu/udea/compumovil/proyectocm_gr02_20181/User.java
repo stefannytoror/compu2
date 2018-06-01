@@ -16,6 +16,10 @@ public class User {
         this.uid = uid;
     }
 
+    public User(String userName) {
+        this.userName = userName;
+    }
+
     public User() {
 
     }

@@ -102,7 +102,8 @@ public class FriendsFragment extends Fragment{
                     public void onClick(View v) {
                         User model1 = model;
                         Bundle b = new Bundle();
-                        b.putString("nameDrink", model1.getUserName());
+                        b.putString("uuid",model1.getUid());
+                        b.putString("nameFriend", model1.getUserName());
 
 
                         Intent intent = new Intent(getActivity().getBaseContext(),
