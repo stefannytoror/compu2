@@ -3,79 +3,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.edu.udea.compumovil.proyectocm_gr02_20181.ProfileFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context="co.edu.udea.compumovil.proyectocm_gr02_20181.FriendProfileFragment">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayoutUserData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094"
         tools:layout_editor_absoluteY="-3dp">
 
         <ImageView
             android:id="@+id/imgProfileUser"
             android:layout_width="111dp"
             android:layout_height="87dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="60dp"
             android:src="@drawable/ic_person_black_24dp"
+            app:layout_constraintBottom_toTopOf="@+id/txtUserNameFriend"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/txtNumFriends"
+            android:id="@+id/txtNumFriendsFriend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txtNumFriends"
             android:textColor="@color/colorBlack"
             android:textSize="35dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/txtNumEventsFriend"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.594"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.564" />
+            app:layout_constraintTop_toBottomOf="@+id/txtUserNameFriend"
+            app:layout_constraintVertical_bias="0.752" />
 
         <TextView
-            android:id="@+id/txtNumEvents"
+            android:id="@+id/txtNumEventsFriend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="92dp"
             android:text="@string/txtNumEvents"
             android:textColor="@color/colorBlack"
             android:textSize="35dp"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.572"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNumFriends"
-            app:layout_constraintVertical_bias="0.147" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/txtUserName"
+            android:id="@+id/txtUserNameFriend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
             android:text="@string/txtRateProfile"
             android:textColor="@color/colorBlack"
             android:textSize="45dp"
-            app:layout_constraintBottom_toTopOf="@+id/txtNumFriends"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgProfileUser"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.386"
+            tools:layout_editor_absoluteX="72dp" />
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

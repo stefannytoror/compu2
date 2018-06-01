@@ -16,6 +16,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.UUID;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -30,6 +33,8 @@ public class SignUpActivity extends AppCompatActivity {
     private String username;
     private String email;
     private String password;
+
+    private DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (!validateForm()) {
             return;
         }
+        addUserToDataBase(email);
         Log.d(TAG, "createAccount:" + email);
         //showProgressDialog();
 
@@ -146,5 +152,15 @@ public class SignUpActivity extends AppCompatActivity {
         }/* else if (i == R.id.disconnect_button) {
             revokeAccess();
         }*/
+    }
+    private void addUserToDataBase(String email){
+        String eventsJoin = "",eventsCreated="";
+        String string = email;
+        String[] parts = string.split("@");
+        String part1 = parts[0];
+        String name = part1.toString();
+
+        User user = new User(name, email,eventsJoin, eventsCreated, UUID.randomUUID().toString());
+        mDatabaseReference.child("users").child(user.getUid()).setValue(user);
     }
 }
