@@ -46,6 +46,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
     private String hour;
     private String UUID;
     private String date;
+    private String name;
 
     private String serverKey = "AIzaSyDbuQvU2I4_emVOJ0vlP6flEqUQRDvl3Ig";
     @Override
@@ -123,10 +124,12 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
             hour = b.getString("hour");
             date = b.getString("date");
             UUID = b.getString("UUID");
+            name = b.getString("name");
+
 
             Log.d("TAG", "onMapReady: " + b);
             Log.d("TAG", "onMapReady: "+ from);
-            Event event = new Event(UUID,from,to,"santiago",hour,date,origin.toString(),destination.toString());
+            Event event = new Event(UUID,from,to,name,hour,date,origin.toString(),destination.toString());
             mFirebaseDatabase = FirebaseDatabase.getInstance();
             mDatabaseReference = mFirebaseDatabase.getReference();
             mDatabaseReference.child("events").child(event.getUid()).setValue(event);
