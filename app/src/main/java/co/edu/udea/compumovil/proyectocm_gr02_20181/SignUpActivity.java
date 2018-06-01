@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.UUID;
 
@@ -96,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (!validateForm()) {
             return;
         }
-        addUserToDataBase(email);
+
         Log.d(TAG, "createAccount:" + email);
         //showProgressDialog();
 
@@ -110,8 +111,15 @@ public class SignUpActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = SWAuth.getCurrentUser();
+
                             //updateUI(user);
+                            Log.d("TAG", "onComplete: "+ SWAuth.getCurrentUser());
+                            String uu = user.getUid();
+                            Log.d("TAG", "onComplete: " + uu);
+
                             startMainActivity(user);
+
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -131,8 +139,10 @@ public class SignUpActivity extends AppCompatActivity {
     private void startMainActivity(FirebaseUser user){
 
         if(user != null) {
-            /*Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);*/
+
+
+            addUserToDataBase(user.getEmail(),user.getUid());
+
             Intent intent = new Intent(this, NDActivity.class);
             startActivity(intent);
 
@@ -146,6 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
             Log.d(TAG, "email_sign_up_button:" );
             createAccount();
 
+
         } else if (i == R.id.login_bottom) {
             Log.d(TAG, "login_bottom:" );
             finish();
@@ -153,14 +164,14 @@ public class SignUpActivity extends AppCompatActivity {
             revokeAccess();
         }*/
     }
-    private void addUserToDataBase(String email){
+    private void addUserToDataBase(String email,String uuid){
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         String eventsJoin = "",eventsCreated="";
         String string = email;
         String[] parts = string.split("@");
-        String part1 = parts[0];
-        String name = part1.toString();
+        String name = parts[0];
 
-        User user = new User(name, email,eventsJoin, eventsCreated, UUID.randomUUID().toString());
-        mDatabaseReference.child("users").child(user.getUid()).setValue(user);
+        User user = new User(name, email,eventsJoin, eventsCreated,uuid);
+        mDatabaseReference.child("users").child(uuid).setValue(user);
     }
 }
